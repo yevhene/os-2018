@@ -6,4 +6,4 @@
 
 ### Лабораторнi
 - [Лабораторна 0: Реєстрація на novel.university](labs/00-registration.md)
-- [Лабораторна 1](labs/01-login.md)
+- [Лабораторна 1: Знайомство з операційною системою Unix (Linux, FreeBSD), реєстрація користувача](labs/01-login.md)
