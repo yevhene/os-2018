@@ -2,6 +2,8 @@
 
 Звіти до лабораторних подаються через [сайт](http://novel.university).
 
+[Методичка та посібник](https://www.dropbox.com/sh/csjq5labdvc8hsq/AADmXIMdgR5UlC82j-LSKW_Pa?dl=0)
+
 [Налаштування proxy у ВНТУ](docs/proxy.md).
 
 ### Лабораторнi
