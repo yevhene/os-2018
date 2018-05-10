@@ -40,6 +40,12 @@ int *sid = semget(key, members, IPC_CREAT | IPC_EXCL | 0666);
 ```
 Повертає `-1` у випадку невдачі.
 
+### Відкриття семафора
+```c
+int *sid = semget(key, 0, 0666);
+```
+Повертає `-1` у випадку невдачі.
+
 ### Отримання значення семафора
 ```c
 semval = semctl(sid, member, GETVAL, 0);
