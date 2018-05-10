@@ -16,6 +16,54 @@ struct sembuf {
 }
 ```
 
+### Структура опцій семафора
+```c
+union semun {
+  int             val;    /* Value for SETVAL */
+  struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
+  unsigned short  *array;  /* Array for GETALL, SETALL */
+  struct seminfo  *__buf;  /* Buffer for IPC_INFO (Linux-specific) */
+};
+```
+
+## Робота з семафорами
+
+### Створення унікального ключа для семафора
+```c
+key_t key = ftok(".", 's');
+```
+Ключ прив'язаний до поточної папки `"."`.
+
+### Створення семафора
+```c
+int *sid = semget(key, members, IPC_CREAT | IPC_EXCL | 0666);
+```
+Повертає `-1` у випадку невдачі.
+
+### Отримання значення семафора
+```c
+semval = semctl(sid, member, GETVAL, 0);
+```
+Повертає `true` або `false` в залежності від того семафор заблокований чи розблокований.
+
+### Блокування семафора
+```c
+struct sembuf sem_lock = {member, -1, IPC_NOWAIT};
+semop(sid, &sem_unlock, 1);
+```
+Повертає `-1` у випадку невдачі.
+
+### Розблокування семафора
+```c
+struct sembuf sem_unlock = {member, 1, IPC_NOWAIT};
+semop(sid, &sem_unlock, 1);
+```
+
+### Знищення семафора
+```c
+semctl(sid, 0, IPC_RMID, 0);
+```
+
 ## Приклад лістингу
 
 ### semtool.c
